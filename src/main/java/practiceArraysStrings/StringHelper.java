@@ -10,9 +10,24 @@ public class StringHelper {
      * @return the number of vowels
      */
     public static int countVowels(String message) {
-        //TODO: Replace with your code.
+        int vowelsCount = 0;
 
-        return -1; // remember to change
+        for(char c : message.toCharArray()){
+            if(isVowels(c)){
+                vowelsCount ++;
+            }
+        }
+
+        return vowelsCount;
+    }
+
+    private static boolean isVowels(char c){
+        if(c == 'a' || c =='e' || c == 'i' || c == 'o' || c == 'u'){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -31,9 +46,31 @@ public class StringHelper {
      * @author Prof. Rollins
      */
     public static String encrypt(String message, int shift) {
-        //TODO: Replace with your code.
+        if(shift > 26) {
+            return null;
+        }
 
-        return ""; // remember to change
+        StringBuilder sb = new StringBuilder();
+
+        for(char c :  message.toCharArray()){
+            if( c > 'z' || c < 'a') {
+                return null;
+            }
+            else{
+                sb.append(cypher(c, shift));
+            }
+        }
+
+        return sb.toString();
+    }
+
+    private static char cypher(char c, int shift){
+        if( c + shift > 'z'){
+            return (char)('z' - c + 'a');
+        }
+        else{
+            return (char)(c + shift);
+        }
     }
 
     /** Main method: runs methods of class StringHelper */

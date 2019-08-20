@@ -1,5 +1,7 @@
 package practiceArraysStrings;
 
+import java.util.List;
+
 /** A class that contains several static methods for manipulating an array of
  * integers.
  */
@@ -10,8 +12,14 @@ public class ArrayHelper {
      * @param arr array of integers
      */
     public static void print(int[] arr) {
-        //TODO: Replace with your code.
+        StringBuilder sb = new StringBuilder();
+        for(int element : arr){
+            sb.append(element);
+            sb.append(", ");
+        }
 
+        sb.delete(sb.length() -2, sb.length() -1);
+        System.out.println(sb);
     }
 
 
@@ -22,8 +30,10 @@ public class ArrayHelper {
      */
     public static int sum(int[] arr) {
         int s = 0;
-        //TODO: Replace with your code.
 
+        for(int e : arr){
+            s += e;
+        }
         return s;
     }
 
@@ -36,7 +46,12 @@ public class ArrayHelper {
      * @return true if all elements are less than threshold; false otherwise
      */
     public static boolean threshold(int[] arr, int thres) {
-        //TODO: Replace with your code.
+
+        for(int e : arr){
+            if(e >= thres) {
+                return false;
+            }
+        }
 
         return true;
     }
@@ -50,7 +65,12 @@ public class ArrayHelper {
      * @return true if elem is present in the array, false otherwise
      */
     public static boolean find(int[] arr, int elem) {
-        //TODO: Replace with your code.
+
+        for(int e : arr){
+            if(e == elem) {
+                return true;
+            }
+        }
 
         return false;
     }
@@ -62,9 +82,15 @@ public class ArrayHelper {
      * @return number of occurrences of elem
      */
     public static int countOccurrences(int[] arr, int elem) {
-        //TODO: Replace with your code.
+        int count = 0;
 
-        return -1; // remember to change
+        for(int e : arr){
+            if(elem == e){
+                count ++;
+            }
+        }
+
+        return count;
     }
 
     /** Returns true if array of integers has duplicate elements,
@@ -77,7 +103,10 @@ public class ArrayHelper {
      * @return true if array has duplicates and false otherwise
      */
     public static boolean hasDuplicates(int[] arr) {
-        //TODO: Replace with your code.
+        for(int e : arr){
+            if(countOccurrences(arr, e) > 1)
+                return true;
+        }
 
         return false;
     }
