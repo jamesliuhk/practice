@@ -19,11 +19,9 @@ public class University {
      * @param name name of university
      */
     public University(String name) {
-        // TODO: initialize instance variable name
+        this.name = name;
 
-        // TODO: Create an ArrayList and assign a reference to it to instance variable students
-
-
+        this.students = new ArrayList<>();
     }
 
     /**
@@ -33,8 +31,7 @@ public class University {
      * @param studentId id of the student
      */
     public void addStudent(String studentName, int studentId) {
-        // TODO: create a student with this name and id
-
+        this.students.add(new Student(studentName, studentId));
     }
 
     /** Return true if a person with the given name is a student at this university,
@@ -44,8 +41,12 @@ public class University {
      * @return true if this person is a student at this university
      */
     public boolean findStudent(String name) {
-        // TODO: check if the student with this name is in the ArrayList
 
+        for(Student s : this.students){
+            if(s.getName().compareTo(name) == 0){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -55,19 +56,19 @@ public class University {
      * then includes students: one student (name, id) on each line
      */
     public String toString() {
-        // TODO: return a string representation of the university - see description above
-
-        return null; // remember to change this
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.name + "\n");
+        for(Student s : this.students){
+            sb.append("(" + s.getName() + "," + s.getId() + ")");
+        }
+        return sb.toString();
     }
 
     /**
      * Sorts the ArrayList of students by name in increasing order.
      */
     public void sort() {
-        // TODO: sort students.
-        // Note: implement compareTo method in class Student first
-
-
+        this.students.sort(Student::compareTo);
     }
 
     /** Load information about students from the csv file.
@@ -77,8 +78,7 @@ public class University {
      */
     public void loadStudentDataFromFile(Path filePath) {
         // TODO: read from the file, create student objects and add them to the list of students
-        // HINT: Consider using function split from class String
-        // Integer.parseInt method takes a String representation of an integer like "123" and returns an integer
+
 
     }
 }
