@@ -57,9 +57,9 @@ public class University {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.name + "\n");
+        sb.append(this.name);
         for(Student s : this.students){
-            sb.append("(" + s.getName() + "," + s.getId() + ")");
+            sb.append(System.lineSeparator() + s.getName() + "," + s.getId());
         }
         return sb.toString();
     }
@@ -77,7 +77,19 @@ public class University {
      * @param filePath Path to the input file
      */
     public void loadStudentDataFromFile(Path filePath) {
-        // TODO: read from the file, create student objects and add them to the list of students
+
+        try {
+            Scanner sc = new Scanner(filePath.toFile());
+            while(sc.hasNext()){
+                String studentData = sc.nextLine();
+                this.students.add(new Student(
+                        studentData.split(",")[0],
+                        Integer.parseInt(studentData.split(",")[1]))
+                );
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
     }
